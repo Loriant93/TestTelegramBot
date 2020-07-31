@@ -1,2 +1,2 @@
 # TestTelegramBot
- Bot for learning telegram bot api
+ App.Bot for learning telegram bot api

@@ -1,3 +1,6 @@
+package App;
+
+import Commands.CommandFactory;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -9,8 +12,9 @@ import java.util.Properties;
 
 public class Bot extends TelegramLongPollingBot {
     private Properties prop = new Properties();
+    private CommandFactory factory = new CommandFactory();
 
-    public Bot(){
+    public Bot() {
         try {
             InputStream inputStream = getClass().getClassLoader().getResourceAsStream("BotSetting.properties");
             prop.load(inputStream);
@@ -20,8 +24,9 @@ public class Bot extends TelegramLongPollingBot {
     }
 
     public void onUpdateReceived(Update update) {
-        String message = update.getMessage().getText();
-        sendMsg(update.getMessage().getChatId().toString(), message);
+      //  String message = update.getMessage().getText();
+        //sendMsg(update.getMessage().getChatId().toString(), message);
+        factory.MessageHandler(update,this);
     }
 
     public synchronized void sendMsg(String chatId, String s) {
@@ -32,7 +37,7 @@ public class Bot extends TelegramLongPollingBot {
         try {
             execute(sendMessage);
         } catch (TelegramApiException e) {
-           e.printStackTrace();
+            e.printStackTrace();
         }
     }
 
