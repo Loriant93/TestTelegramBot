@@ -11,7 +11,7 @@ public class CommandParser {
 
         message = message.replaceFirst("/", "");
         if (!message.contains(" "))
-            return new Pair<>(message, "");
+            return new Pair<>(message, "");         //command without any text
 
         int id = message.indexOf(" ");
         String command = message.substring(0, id);

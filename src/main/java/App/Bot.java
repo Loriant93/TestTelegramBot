@@ -11,8 +11,8 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class Bot extends TelegramLongPollingBot {
-    private Properties prop = new Properties();
-    private CommandFactory factory = new CommandFactory();
+    private final Properties prop = new Properties();
+    private final CommandFactory factory = new CommandFactory();
 
     public Bot() {
         try {
@@ -24,7 +24,7 @@ public class Bot extends TelegramLongPollingBot {
     }
 
     public void onUpdateReceived(Update update) {
-      //  String message = update.getMessage().getText();
+        //String message = update.getMessage().getText();
         //sendMsg(update.getMessage().getChatId().toString(), message);
         factory.MessageHandler(update,this);
     }
