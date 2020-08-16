@@ -24,14 +24,14 @@ public class WeatherCommand extends Command {
             String weatherText = weatherApi.getWeather(text);
             message.setText(weatherText);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("error", e);
             message.setText("Ошибка");
         }
         try {
             bot.execute(message);
 
         } catch (TelegramApiException e) {
-            e.printStackTrace();
+            logger.error("error", e);
         }
 
     }

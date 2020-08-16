@@ -20,8 +20,7 @@ public class UnknownCommand extends Command {
         try {
             bot.execute(message);
         } catch (TelegramApiException e) {
-            e.printStackTrace();
+            logger.error("error", e);
         }
-        System.out.println("end of help");
     }
 }

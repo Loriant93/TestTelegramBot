@@ -5,7 +5,7 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
-public class HelpCommand extends Command{
+public class HelpCommand extends Command {
     public HelpCommand(String text, Update update, Bot bot) {
         super("help", text, update, bot);
     }
@@ -20,7 +20,7 @@ public class HelpCommand extends Command{
         try {
             bot.execute(message);
         } catch (TelegramApiException e) {
-            e.printStackTrace();
+            logger.error("error", e);
         }
     }
 }

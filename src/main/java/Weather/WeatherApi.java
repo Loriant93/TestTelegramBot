@@ -6,6 +6,8 @@ import okhttp3.Request;
 import okhttp3.Response;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,6 +15,7 @@ import java.util.Date;
 import java.util.Properties;
 
 public class WeatherApi {
+    private final static Logger logger = LoggerFactory.getLogger(WeatherApi.class);
     private final OkHttpClient client = new OkHttpClient();
     private String ApiKey;
     private static WeatherApi weatherApi;
@@ -24,7 +27,7 @@ public class WeatherApi {
             prop.load(inputStream);
             ApiKey = prop.getProperty("WeatherApiKey");
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("error", e);
         }
     }
 
@@ -42,8 +45,10 @@ public class WeatherApi {
         if (response.isSuccessful()) {
             JSONObject jsonObject = new JSONObject(response.body().string());
             return parsingWeatherJson(jsonObject);
-        } else
+        } else {
+            logger.info("Ошибка в getWeather.Response - code :{} message :{}, city - {}", response.code(), response.message(), city);
             return "Ошибка. Попробуйте ввести другое название города.";
+        }
     }
 
     private String parsingWeatherJson(JSONObject object) {

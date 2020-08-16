@@ -1,9 +1,13 @@
 package Commands;
 
 import App.Bot;
+import App.Solution;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 public abstract class Command implements Runnable {
+    public final Logger logger = LoggerFactory.getLogger(Command.class);
     public String name;
     public String text;
     public Update update;
@@ -18,6 +22,6 @@ public abstract class Command implements Runnable {
 
     @Override
     public void run() {
-        System.out.println("Staring new command : " + name + " " + text);
+        logger.info("Staring new command : " + name + " " + text);
     }
 }
