@@ -22,7 +22,7 @@ public class Bot extends TelegramLongPollingBot {
             InputStream inputStream = getClass().getClassLoader().getResourceAsStream("BotSetting.properties");
             prop.load(inputStream);
         } catch (IOException e) {
-            logger.error("error", e);
+            logger.error("error reading properties", e);
         }
     }
 

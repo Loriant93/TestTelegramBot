@@ -19,7 +19,7 @@ public class WeatherCommand extends Command {
         super.run();
         SendMessage message = new SendMessage();
         message.enableMarkdown(true);
-        message.setChatId(update.getMessage().getChatId());
+        message.setChatId(update.getMessage().getChatId().toString());
         try {
             String weatherText = weatherApi.getWeather(text);
             message.setText(weatherText);

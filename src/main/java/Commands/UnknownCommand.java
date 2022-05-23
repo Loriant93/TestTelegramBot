@@ -15,7 +15,7 @@ public class UnknownCommand extends Command {
         super.run();
         SendMessage message = new SendMessage();
         message.enableMarkdown(true);
-        message.setChatId(update.getMessage().getChatId());
+        message.setChatId(update.getMessage().getChatId().toString());
         message.setText("unknown command");
         try {
             bot.execute(message);

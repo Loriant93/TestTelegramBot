@@ -9,13 +9,12 @@ public class HelpCommand extends Command {
     public HelpCommand(String text, Update update, Bot bot) {
         super("help", text, update, bot);
     }
-
     @Override
     public void run() {
         super.run();
         SendMessage message = new SendMessage();
         message.enableMarkdown(true);
-        message.setChatId(update.getMessage().getChatId());
+        message.setChatId(update.getMessage().getChatId().toString());
         message.setText("I hope this is helpful");
         try {
             bot.execute(message);
