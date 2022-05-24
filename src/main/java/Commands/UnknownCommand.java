@@ -7,7 +7,7 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 public class UnknownCommand extends Command {
     public UnknownCommand(String text, Update update, Bot bot) {
-        super("unknown", text, update, bot);
+        super("unknown :  " + text, "", update, bot);
     }
 
     @Override

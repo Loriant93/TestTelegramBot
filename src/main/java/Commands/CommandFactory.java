@@ -39,7 +39,7 @@ public class CommandFactory {
                 command = new HelpCommand(pair.component2(), update, bot);
                 break;
             default:
-                command = new UnknownCommand("", update, bot);
+                command = new UnknownCommand(pair.component1(), update, bot);
                 break;
         }
         command.run();
