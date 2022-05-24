@@ -44,6 +44,7 @@ public class WeatherApi {
         Response response = call.execute();
         if (response.isSuccessful()) {
             JSONObject jsonObject = new JSONObject(response.body().string());
+            response.close();
             return parsingWeatherJson(jsonObject);
         } else {
             logger.info("Ошибка в getWeather.Response - code :{} message :{}, city - {}", response.code(), response.message(), city);
