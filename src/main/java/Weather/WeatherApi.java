@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Date;
+import java.util.Objects;
 import java.util.Properties;
 
 public class WeatherApi {
@@ -43,7 +43,7 @@ public class WeatherApi {
         Call call = client.newCall(request);
         Response response = call.execute();
         if (response.isSuccessful()) {
-            JSONObject jsonObject = new JSONObject(response.body().string());
+            JSONObject jsonObject = new JSONObject(Objects.requireNonNull(response.body()).string());
             response.close();
             return parsingWeatherJson(jsonObject);
         } else {
